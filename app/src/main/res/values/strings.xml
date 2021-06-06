@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MyQuizApp</string>
+    <string name="name">date</string>
+    <string name="Button">submit</string>
+    <string name="t1">TextView</string>
+    <string name="t2">TextView</string>
+    <string name="t3">TextView</string>
+    <string name="t4">TextView</string>
+    <string name="date">date</string>
+    <string name="submit">Submit</string>
+
+</resources>
