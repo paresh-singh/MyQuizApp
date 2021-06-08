@@ -20,19 +20,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        changeDay()
-        textView1.setOnClickListener {
-            selectedOpt(textView1,1)
-        }
-        textView2.setOnClickListener {
-            selectedOpt(textView2,2)
-        }
-        textView3.setOnClickListener {
-            selectedOpt(textView3,3)
-        }
-        textView4.setOnClickListener {
-            selectedOpt(textView4,4)
-        }
+
+        again()
 
         btnShow.setOnClickListener {
             if (selopt == 4){
@@ -97,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     fun again(){
         defaultOpt()
         changeDay()
+        textView5.text = "Score is " + count.toString()
         textView1.setOnClickListener {
             selectedOpt(textView1,1)
         }
