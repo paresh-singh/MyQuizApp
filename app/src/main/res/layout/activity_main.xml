@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4EF"
+    android:background="@drawable/bg3"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btnShow"
-        android:layout_width="165dp"
-        android:layout_height="40dp"
-        android:text="@string/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:gravity="center"
+        android:text="@string/submit"
+
+        app:backgroundTint="#E85B2F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.825" />
@@ -24,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="35dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -44,10 +47,11 @@
         android:id="@+id/textqn"
         android:layout_width="277dp"
         android:layout_height="51dp"
-        android:hint="@string/date"
+        android:background="#EFE5E5"
         android:gravity="center"
+        android:hint="@string/date"
         android:includeFontPadding="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,18 +64,18 @@
         android:id="@+id/textView1"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:text="@string/t4"
-        android:padding="10dp"
-        android:textSize="18sp"
-        android:textColorHint="@color/white"
-        android:gravity="center"
         android:background="@drawable/qn_options"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/t4"
+        android:textColorHint="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
+        app:layout_constraintVertical_bias="0.314" />
 
     <TextView
         android:id="@+id/textView2"
@@ -91,7 +95,7 @@
         app:layout_constraintVertical_bias="0.149" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView3"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:background="@drawable/qn_options"
@@ -108,21 +112,21 @@
         app:layout_constraintVertical_bias="0.18" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView4"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:background="@drawable/qn_options"
+        android:gravity="center"
         android:padding="10dp"
         android:text="@string/t4"
         android:textColorHint="@color/white"
-        android:gravity="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btnShow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.386" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
