@@ -14,7 +14,7 @@ import com.example.myquizapp.R.drawable.selected_option
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    var selopt = 0
+    var selopt = ""
     var count:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,41 +23,57 @@ class MainActivity : AppCompatActivity() {
 
         again()
 
+    }
+
+    fun changeDay(){
+
+        val day = dayorder()
+        val opt1 = day[0]
+        val opt2 = day[1]
+        val opt3 = day[2]
+        val opt4 = day[3]
+        val qnDate = day[4]
+        val list = arrayListOf<String>(opt1 , opt2 , opt3 , opt4)
+
+        var textQnHere = findViewById<TextView>(R.id.textqn)
+        textQnHere.text = qnDate
+        textView1.text =  list.random()
+        textView2.text =  list.random()
+        textView3.text =  list.random()
+        textView4.text =  list.random()
+
+        while (true){
+            if (textView1.text == textView2.text){
+                textView2.text =  list.random()
+            }else if (textView1.text == textView3.text || textView3.text == textView2.text){
+                textView3.text =  list.random()
+            }else if (textView1.text == textView4.text || textView3.text == textView4.text || textView4.text == textView2.text ){
+                textView4.text =  list.random()
+            }else {
+                if (textView1.text != textView4.text && textView3.text != textView4.text && textView4.text != textView2.text && textView1.text != textView3.text && textView3.text != textView2.text && textView1.text != textView2.text){
+                    break
+                }
+            }
+        }
+
+
         btnShow.setOnClickListener {
-            if (selopt == 4){
+            if (selopt == opt4){
                 count++
                 Log.i("correct option","option 4 is selected")
                 again()
-            }else if(selopt == 0 ) {
-                Log.i("no option","didnt select any option")
-                Toast.makeText(this,"click an option",Toast.LENGTH_SHORT).show()
-            }else{
+            }else if(selopt == opt1 || selopt ==opt2 || selopt==opt3 ) {
                 var intent = Intent(this, answer::class.java )
                 Log.i("wrong option","game over")
                 intent.putExtra("key", count.toString())
                 startActivity(intent)
                 finish()
+
+            }else{
+                Log.i("no option","didnt select any option")
+                Toast.makeText(this,"click an option",Toast.LENGTH_SHORT).show()
             }
         }
-
-    }
-
-    fun changeDay(){
-
-        var day = dayorder()
-        var opt1 = day[0]
-        var opt2 = day[1]
-        var opt3 = day[2]
-        var opt4 = day[3]
-        var qnDate = day[4]
-
-
-        var textQnHere = findViewById<TextView>(R.id.textqn)
-        textQnHere.text = qnDate
-        textView1.text =  opt1
-        textView2.text =  opt2
-        textView3.text =  opt3
-        textView4.text =  opt4
     }
 
     fun defaultOpt(){
@@ -75,9 +91,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun selectedOpt(v:TextView,opt:Int){
+    fun selectedOpt(v:TextView){
         defaultOpt()
-        selopt = opt
+        selopt = v.text.toString()
         v.background = ContextCompat.getDrawable(this, R.drawable.selected_option)
         v.typeface = Typeface.DEFAULT_BOLD
         v.setTextColor(Color.parseColor("#000000"))
@@ -88,17 +104,17 @@ class MainActivity : AppCompatActivity() {
         changeDay()
         textView5.text = "Score is " + count.toString()
         textView1.setOnClickListener {
-            selectedOpt(textView1,1)
+            selectedOpt(textView1)
         }
         textView2.setOnClickListener {
-            selectedOpt(textView2,2)
+            selectedOpt(textView2)
         }
         textView3.setOnClickListener {
-            selectedOpt(textView3,3)
+            selectedOpt(textView3)
         }
         textView4.setOnClickListener {
-            selectedOpt(textView4,4)
+            selectedOpt(textView4)
         }
-        selopt = 0
+
     }
 }
