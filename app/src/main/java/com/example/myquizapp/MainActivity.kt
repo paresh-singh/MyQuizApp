@@ -3,25 +3,38 @@ package com.example.myquizapp
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Vibrator
 import android.util.Log
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import com.example.myquizapp.R.drawable.selected_option
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     var selopt = ""
     var count:Int = 0
+    lateinit var vib : Vibrator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
-
         again()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("key", count)
+
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val userInt : Int = savedInstanceState.getInt("key")
+        textView5.text = "Score is " + userInt.toString()
 
     }
 
@@ -55,16 +68,28 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-
+        vib = getSystemService(VIBRATOR_SERVICE) as Vibrator
+        val lay: ConstraintLayout = findViewById(R.id.mainLayout)
         btnShow.setOnClickListener {
             if (selopt == opt4){
                 count++
                 Log.i("correct option","option 4 is selected")
+                lay.setBackgroundColor(Color.parseColor("#00ff00"))
+                val timer = object: CountDownTimer(2000, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {}
+                    override fun onFinish() {
+                        lay.setBackgroundResource(R.drawable.bg3)
+                    }
+                }
+                timer.start()
                 again()
+
             }else if(selopt == opt1 || selopt ==opt2 || selopt==opt3 ) {
                 var intent = Intent(this, answer::class.java )
                 Log.i("wrong option","game over")
+                lay.setBackgroundColor(Color.parseColor("#ff0000"))
+                vib.vibrate(500)
+
                 intent.putExtra("key", count.toString())
                 startActivity(intent)
                 finish()
@@ -74,6 +99,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this,"click an option",Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     fun defaultOpt(){
@@ -101,6 +127,7 @@ class MainActivity : AppCompatActivity() {
 
     fun again(){
         defaultOpt()
+
         changeDay()
         textView5.text = "Score is " + count.toString()
         textView1.setOnClickListener {
@@ -117,4 +144,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }
+
